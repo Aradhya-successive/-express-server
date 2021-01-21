@@ -6,11 +6,11 @@
 5.  Integrated Terminal
 
 useful plugins of VS-CODE
-Auto Rename Tag
-Bracket Pair Colorizer 2
-Indent-Rainbow
-Code Spell Checker
-ESLint
-Jest
-GitLens
-Git
+1. Auto Rename Tag
+2. Bracket Pair Colorizer 2
+3. Indent-Rainbow
+4. Code Spell Checker
+5. ESLint
+6. Jest
+7. GitLens
+8. Git
