@@ -1,5 +1,6 @@
 import * as express from 'express'; 
 import {IConfig} from "./IConfig";
+const bodyParser = require("body-parser");
  
  class server{
 
@@ -11,12 +12,17 @@ import {IConfig} from "./IConfig";
 
      public bootstrap(){
          this.setupRoutes();
+         this.initBodyParser();
          return this;
      }
      private setupRoutes() {
          this.application.get("/health-check",(req, res)=>{
              res.send("I am OK")
          });
+     }
+
+     public initBodyParser(){
+         this.application.use(bodyParser.json());
      }
      public run(){
          console.log('Inside setupRputes method');
