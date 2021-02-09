@@ -1,41 +1,48 @@
-import * as express from 'express'; 
-import {IConfig} from "./IConfig";
-const bodyParser = require("body-parser");
- 
- class server{
+import * as express from 'express';
+import { IConfig } from './Config/IConfig';
+import * as bodyParser from 'body-parser';
+import notFoundRoute from './libs/routes/notFoundRoute';
+import errorHandlers from './libs/routes/errorHandler';
+import traineeRoutes from '../src/controllers/trainee/routes';
+import router from './router';
 
-     private application: express.Express;
+ class Server {
 
-     constructor(private config: IConfig){
+     private application;
+
+     constructor(private config: IConfig) {
          this.application = express();
      }
 
-     public bootstrap(){
+     public bootstrap() {
+        this.initBodyParser();
          this.setupRoutes();
-         this.initBodyParser();
          return this;
      }
      private setupRoutes() {
-         this.application.get("/health-check",(req, res)=>{
-             res.send("I am OK")
+         this.application.get('/health-check', (req, res) => {
+             res.send('I am OK');
          });
+        this.application.use('/api',router);
+        this.application.use(notFoundRoute);
+        this.application.use(errorHandlers);
      }
 
-     public initBodyParser(){
+     public initBodyParser() {
          this.application.use(bodyParser.json());
      }
-     public run(){
+     public run() {
          console.log('Inside setupRputes method');
          const runningServer = this.application.listen(this.config.port);
-         runningServer.on("Success",()=>{
-         console.log(`Application is running successfully`)}
+         runningServer.on('Success', () => {
+         console.log(`Application is running successfully`); }
          );
 
-         runningServer.on("error", (err: any) =>{
+         runningServer.on('error', (err: any) => {
              console.error(err);
          });
 
      }
  }
 
- export  default server;
+ export  default Server;

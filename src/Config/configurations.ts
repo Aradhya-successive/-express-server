@@ -1,5 +1,5 @@
 import * as dotenv from 'dotenv';
-import { IConfig } from '../IConfig';
+import { IConfig } from './IConfig';
 
 dotenv.config();
 
