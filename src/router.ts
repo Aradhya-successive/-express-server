@@ -3,7 +3,6 @@ import { Router } from 'express';
 
 const router = Router();
 
-router.use('/trainee',traineeRoutes)
-  
+router.use('/trainee', traineeRoutes );
 
 export default router;
