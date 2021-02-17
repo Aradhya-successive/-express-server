@@ -5,6 +5,8 @@ export default (validation: any) => (
     response: Response,
     next: Nextfunction
 )  => {
+    console.log('inside validation handler'); 
+    console.log('Body:', request.body);  
     const { body, params, query } = request;
         const errors: any = [];
         Object.keys(validation).forEach((key) => {
